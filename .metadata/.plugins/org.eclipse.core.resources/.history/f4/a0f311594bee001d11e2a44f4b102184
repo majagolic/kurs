@@ -1,0 +1,14 @@
+package objektiKurs;
+
+import java.util.Scanner;
+
+public class TestMeni {
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+	}
+
+}

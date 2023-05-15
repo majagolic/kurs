@@ -1,0 +1,4 @@
+A1;kafa;220.0
+A2;sok;240.0
+A3;guarana;80.0
+A4;cips;120.0

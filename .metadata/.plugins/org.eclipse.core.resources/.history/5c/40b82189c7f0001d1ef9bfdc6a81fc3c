@@ -1,0 +1,37 @@
+package sud;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Evidencija evidencija = new Evidencija("Osnovni sud u Novom Sadu", "Sutjeska 3");
+		
+		String d1 = "25.01.2017.";
+		String d2 = "01.01.2017.";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		LocalDate d1ZaDodavanje = null;
+		
+		try {
+			d1ZaDodavanje = LocalDate.parse(d1, dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Predmet p1 = new Predmet(1, "Prvi predmet", "Tekst prvog predmeta", d1ZaDodavanje);
+
+		try {
+			d1ZaDodavanje = LocalDate.parse(d2, dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Predmet p2 = new Predmet(2, "Drugi predmet", "Tekst drugog predmeta", d1ZaDodavanje);
+		
+		evidencija.dodajPredmet(p1);
+		evidencija.dodajPredmet(p2);
+	}
+
+}

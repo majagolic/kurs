@@ -1,0 +1,16 @@
+package objekatTelefonskiImenik;
+
+import java.time.LocalDate;
+
+public class Kontakt {
+	
+	private int id;
+	private String ime = "";
+	private String prezime = "";
+	private String radnoMesto = "";
+	private String prostorija = "";
+	private int lokal;
+	private LocalDate datum = LocalDate.now();
+	
+
+}

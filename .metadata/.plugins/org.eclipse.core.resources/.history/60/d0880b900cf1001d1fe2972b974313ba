@@ -1,0 +1,25 @@
+package biblioteka;
+
+public class Knjiga {
+	
+	private int broj;
+	private String naziv = "";
+	private String ime= "";
+	private boolean izdata;
+	
+	public Knjiga() {
+		
+	}
+
+	public Knjiga(int broj, String naziv, String ime, boolean izdata) {
+	
+		this.broj = broj;
+		this.naziv = naziv;
+		this.ime = ime;
+		this.izdata = izdata;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,24 @@
+package objekatPas;
+
+public class Pas {
+
+	private String ime;
+	private int starost;
+	private boolean vakcinisan;
+	private String rasa;
+	
+	public Pas() {
+		
+		this.ime = "";
+		this.rasa = "";		
+	}
+	
+	
+	public Pas(String ime, int starost) {
+		
+		this.ime = ime;
+		this.starost = starost;
+	}
+	
+	
+}

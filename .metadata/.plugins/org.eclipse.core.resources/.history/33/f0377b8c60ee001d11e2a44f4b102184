@@ -1,0 +1,105 @@
+package objektiKurs;
+
+import java.util.Scanner;
+
+public class TestMeni {
+	
+	public static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		
+		Kurs kurs = new Kurs(); //konstruktor Kurs napravi objekat kurs
+		
+		String izbor = "";
+		
+		do {
+			System.out.println("Meni:");
+			System.out.println("1. Kreiraj kurs");
+			System.out.println("2. Dodaj polaznika");
+			System.out.println("3. Ispisi polaznike");
+			System.out.println("4. Izmeni polaznika");
+			System.out.println("5. Obrisi polaznika");
+			System.out.println("6. Pretraga polaznika po imenu i prezimenu");
+			System.out.println("7. Pretraga polaznika po imenu");
+			System.out.println("8. Ispis ukupnog broja polaznika");
+			System.out.println("9. Ispis podataka o kursu");
+			System.out.println("x. Izlaz");
+			
+			izbor = scanner.nextLine();
+			
+			switch (izbor) {
+			case "1":
+				kreirajKurs(kurs);
+				break;
+			case "2":
+				dodajPolaznika(kurs);
+				break;
+			case "3":
+				kurs.ispisiPolaznike();
+				break;
+			case "4":
+				izmeniPolaznika(kurs);
+				break;
+			case "5":
+				obrisiPolaznika(kurs);
+				break;
+			case "6":
+				pretragaPolaznikaPoImenuIPrezimenu(kurs);
+				break;
+			case "7":
+				pretragaPolaznikaPoImenu(kurs);
+				break;
+			case "8":
+				kurs.ispisiUkupanBrojPolaznika();
+				break;
+			case "9":
+				System.out.println(kurs);
+				break;
+			case "x":
+				break;
+			default:
+				System.out.println("Opcija ne postoji.");
+				break;
+			}
+			
+		} while (!izbor.equals("x"));
+		
+		scanner.close();
+		kurs.sacuvajUFajl("kurs");
+	}
+
+	private static void pretragaPolaznikaPoImenu(Kurs kurs) {
+		System.out.println("Ime:");
+		String ime = scanner.nextLine();
+		kurs.pretragaPolaznikaPoImenu(ime);
+	}
+	
+	private static void pretragaPolaznikaPoImenuIPrezimenu(Kurs kurs) {
+		
+		System.out.println("Polaznik: ");
+		String polaznik = scanner.nextLine();
+		kurs.pretragaPolaznikaPoImenuIPrezimenu(polaznik);
+	}
+	
+	private static void obrisiPolaznika(Kurs kurs) {
+		
+		System.out.println("Polaznik: ");
+		String polaznik = scanner.nextLine();
+		boolean rezultat = kurs.obrisiPolaznika(polaznik);
+		
+		if(rezultat) {
+			System.out.println("Polaznik je uspesno obrisan.");
+		}
+		else {
+			System.out.println("Neuspesno brisanje polaznika.");
+		}
+		
+	
+		
+		
+		
+		
+	}
+}
+
+

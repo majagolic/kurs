@@ -1,0 +1,251 @@
+package objektiKurs;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Kurs {
+	
+	private int sifra = 11111;
+	private String naziv;
+	private ArrayList<String> polaznici = new ArrayList<>();
+	private double cenaPoPolazniku = 15000;
+	private double ukupanPrihod;
+	
+	public Kurs() {
+		
+	}
+	
+	public Kurs(int sifra, String naziv) {
+		
+		if (String.valueOf(sifra).length() == 5) {
+			this.sifra = sifra;
+		} else {
+			System.out.println("Sifra mora biti petocifreni broj.");
+		}
+		
+		this.naziv = naziv;
+	}
+	
+	public Kurs(int sifra, String naziv, ArrayList<String> polaznici, double cenaPoPolazniku) {
+		if (String.valueOf(sifra).length() == 5) {
+			this.sifra = sifra;
+		} else {
+			System.out.println("Sifra mora biti petocifreni broj.");
+		}
+		this.naziv = naziv;
+		this.polaznici = polaznici;
+		if (cenaPoPolazniku >= 0 ) {
+			this.cenaPoPolazniku = cenaPoPolazniku;
+		} else {
+			System.out.println("Cena mora biti veca ili jednaka 0.");
+		}
+	}
+	
+	public int getSifra() {
+		return sifra;
+	}
+	
+	public void setSifra(int sifra) {
+		
+		if (String.valueOf(sifra).length() == 5) {
+			this.sifra = sifra;
+		} else {
+			System.out.println("Sifra mora biti petocifreni broj.");
+		}
+
+			}
+
+	public String getNaziv() {
+		return naziv;
+	}
+
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+
+	public ArrayList<String> getPolaznici() {
+		return polaznici;
+	}
+
+	public void setPolaznici(ArrayList<String> polaznici) {
+		this.polaznici = polaznici;
+	}
+
+	public double getCenaPoPolazniku() {
+		return cenaPoPolazniku;
+	}
+
+	public void setCenaPoPolazniku(double cenaPoPolazniku) {
+		if (cenaPoPolazniku >= 0 ) {
+			this.cenaPoPolazniku = cenaPoPolazniku;
+		} else {
+			System.out.println("Cena mora biti veca ili jednaka 0.");
+		}
+	}
+	public double getUkupanPrihod() {
+		this.ukupanPrihod = this.cenaPoPolazniku * this.polaznici.size();
+		return ukupanPrihod;
+	}
+
+	public boolean dodajPolaznika(String noviPolaznik) {
+		for (int i = 0; i < polaznici.size(); i++) {
+			if (polaznici.get(i).equals(noviPolaznik)) {
+				System.out.println("Polaznik vec postoji.");
+				return false;
+			}
+		}
+		polaznici.add(noviPolaznik);
+		System.out.println("Polaznik uspesno dodat!");
+		return true;
+	}
+	
+	public void ispisiPolaznike() {
+		
+		if(polaznici.isEmpty()) {
+			System.out.println("Trenutno nema polaznika.");
+		}
+		else {
+			System.out.println("Polaznici: ");
+			for(int i = 0; i<polaznici.size(); i++) {
+				System.out.println(polaznici.get(i));
+				
+			}
+		}
+	}
+	
+	public boolean obrisiPolaznika(String polaznik) {
+		
+		for (int i = 0; i < polaznici.size(); i++) {
+			if(polaznici.get(i).equals(polaznik)) {
+				polaznici.remove(i);
+				System.out.println("Polaznik uspesno obrisan!");
+				return true;
+			}
+		}
+			System.out.println("Polaznik ne postoji.");
+			return false;
+		}
+	
+	public boolean izmeniPolaznika(String stariPolaznik, String noviPolaznik) {
+		
+		for (int i = 0; i < polaznici.size(); i++) {
+			if(polaznici.get(i).equals(noviPolaznik)) {
+				System.out.println("Novi polaznik vec postoji.");
+				return false;
+			}
+		}
+		for (int i = 0; i < polaznici.size(); i++) {
+			if(polaznici.get(i).equals(stariPolaznik)) {
+				polaznici.set(i, noviPolaznik);
+				System.out.println("Polaznik je uspesni izmenjan.");
+				return true;
+			}
+		}
+		System.out.println("Stari polaznik ne postoji.");
+		return false;
+		}
+	
+	public void pretragaPolaznikaPoImenuIPrezimenu(String polaznik) {
+		
+		for (int i = 0; i < polaznici.size(); i++) {
+			if(polaznici.get(i).equals(polaznik)) {
+				System.out.println("Polaznik: " + polaznici.get(i) + "je pronadjen.");
+				return;
+			}
+		}
+		System.out.println("Polaznik nije pronadjen.");
+	}
+	
+	public void pretragaPolaznikaPoImenu(String ime) {
+		
+		boolean pronadjen = false;
+		
+		for (int i = 0; i < polaznici.size(); i++) {
+			String[] podaciPolaznika = polaznici.get(i).split(" ");
+			if(podaciPolaznika[0].equals(ime)) {
+				System.out.println("Pronadjen: " + polaznici.get(i));
+				pronadjen = true;
+			}
+		}
+		if(!pronadjen) {
+			System.out.println("Ne postoji polaznik sa zadatim imenom.");
+		}
+	}
+	
+	public void ispisiUkupanBrojPolaznika() {
+		System.out.println("Ukupan broj polaznika: " + polaznici.size());
+	}
+	
+	public void sacuvajUFajl(String putanja) {
+		ArrayList<String> podaci = new ArrayList<>();
+		podaci.add(String.valueOf(sifra));
+		podaci.add(naziv);
+		podaci.add(String.valueOf(cenaPoPolazniku));
+		podaci.add(String.valueOf(getUkupanPrihod()));
+		
+		for (int i = 0; i < polaznici.size(); i++) {
+			podaci.add(polaznici.get(i));
+		}
+		
+		try {
+			Files.write(Paths.get(putanja), podaci);
+		} catch (IOException e) {
+			System.out.println("Doslo  je do greske prilikom upisa u fajl.");
+		}
+	}
+	
+	public void ucitajIzFajla(String putanja) {
+		try {
+			List<String> podaci = Files.readAllLines(Paths.get(putanja));
+			
+			sifra = Integer.parseInt(podaci.get(0));
+			naziv = podaci.get(1);
+			cenaPoPolazniku = Double.parseDouble(podaci.get(2));
+			ukupanPrihod = Double.parseDouble(podaci.get(3));
+			
+			polaznici.clear();
+			for (int i = 4; i < podaci.size(); i++) {
+				polaznici.add(podaci.get(i));
+			}
+		} catch (IOException e) {
+			System.out.println("Doslo je do greske prilikom ucitavanja iz fajla.");
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String podaci = "";
+		podaci += "Sifra: " + sifra + "\n";
+		podaci += "Naziv: " + naziv + "\n";
+		podaci += "Cena po polazniku: " + cenaPoPolazniku + "\n";
+		podaci += "Ukupan prihod: " + getUkupanPrihod() + "\n";
+		
+		if (polaznici.isEmpty()) {
+			podaci += "Trenutno nema polaznika.";
+		} else {
+			podaci += "Polaznici:\n";
+			for (int i = 0; i < polaznici.size(); i++) {
+				podaci += i+1 + ". " + polaznici.get(i) + "\n";
+			}
+		}
+		
+		return podaci;
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

@@ -1,0 +1,89 @@
+package biblioteka;
+
+import java.util.ArrayList;
+
+public class Biblioteka {
+	
+	private String naziv = "";
+	private String adresa = "";
+	private ArrayList<Knjiga> spisakKnjiga = new ArrayList<Knjiga>();
+	
+	
+	public Biblioteka() {
+		
+	}
+
+
+	public Biblioteka(String naziv, String adresa, ArrayList<Knjiga> spisakKnjiga) {
+		super();
+		this.naziv = naziv;
+		this.adresa = adresa;
+		this.spisakKnjiga = spisakKnjiga;
+	}
+
+
+	public String getNaziv() {
+		return naziv;
+	}
+
+
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+
+	public ArrayList<Knjiga> getSpisakKnjiga() {
+		return spisakKnjiga;
+	}
+
+
+	public void setSpisakKnjiga(ArrayList<Knjiga> spisakKnjiga) {
+		this.spisakKnjiga = spisakKnjiga;
+	}
+	
+	//metoda za dodavanje knjige u evidenciju
+	//Metoda dodajKnjigu dodaje prosleđeni objekat Knjiga u listu knjiga.
+	
+	public boolean dodajKnjigu(Knjiga novaKnjiga) {
+		
+		for (int i = 0; i < this.spisakKnjiga.size(); i++) {
+			if(this.spisakKnjiga.get(i).getBroj() == novaKnjiga.getBroj()) {
+				System.out.println("Knjiga vec postoji.");
+				return false;
+				}
+			}
+		this.spisakKnjiga.add(novaKnjiga);
+		System.out.println("Uspeno dodata knjiga.");
+		return true;
+	}
+	
+	//metodu za brisanje knjige iz evidencije (na osnovu broja knjige)
+	
+	public void obrisiKnjigu(int broj) {
+		
+		boolean pronadjena = false;
+		for (int i = 0; i < this.spisakKnjiga.size(); i++) {
+			if(this.spisakKnjiga.get(i).getBroj() == broj){
+				pronadjena = true;
+				return;
+				
+				
+			}
+				
+			
+		}
+	}
+	
+	
+
+}

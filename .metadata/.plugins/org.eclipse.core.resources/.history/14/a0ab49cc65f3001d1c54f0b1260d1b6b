@@ -1,0 +1,27 @@
+package objekatTelefonskiImenik;
+
+import java.util.ArrayList;
+
+public class Imenik {
+	
+	private ArrayList<Kontakt> listaKontakta =  new ArrayList<Kontakt>();
+
+	public Imenik() {
+		
+	}
+
+	public Imenik(ArrayList<Kontakt> listaKontakta) {
+		
+		this.listaKontakta = new ArrayList<Kontakt>(); 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

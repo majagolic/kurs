@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author golic
+ *
+ */
+module bibliotekaObjekti {
+}

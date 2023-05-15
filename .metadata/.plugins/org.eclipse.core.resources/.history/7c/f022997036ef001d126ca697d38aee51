@@ -1,0 +1,25 @@
+package objekatStudent;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		
+		Student student = new Student(34215, "Maja", "Golic");
+
+		System.out.println(student.getProsek());
+		
+		student.upisiOcenu("Matematika", 6);
+		student.upisiOcenu("Fizika", 7);
+		student.upisiOcenu("OTO", 8);
+		
+		student.ispisPodatakaOStudentu();
+		
+		System.out.println(student.getProsek());
+		
+		student.ispisiOcene();
+		
+		
+		
+	}
+	
+}

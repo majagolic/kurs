@@ -1,0 +1,33 @@
+package biblioteka;
+
+//import java.util.ArrayList;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Biblioteka b = new Biblioteka("Narodna biblioteka Srbije", "Skerlićeva 1, 11000 Beograd");
+		
+		Knjiga k = new Knjiga(23,"Thinking in Java", "Bruce Eckel", true);
+		Knjiga k1 = new Knjiga(28,"Head first Java", "Kathy Sierra", false);
+		Knjiga k2 = new Knjiga(3,"Java, A Beginner's Guide", "Herbert Schildt", true);
+		Knjiga k3 = new Knjiga(5,"Effective Java", "Joshua Bloch", true);
+		
+		b.dodajKnjigu(k);
+		b.dodajKnjigu(k1);
+		b.dodajKnjigu(k2);
+		b.dodajKnjigu(k3);
+		
+		System.out.println(b);
+		
+		ArrayList<Knjiga> knjige = b.vratiKnjigePoAutoru("Herbert Schildt");
+		for (Knjiga knjiga : knjige) {
+			System.out.println(knjiga.getIme());
+		}
+		System.out.println();
+		System.out.println("Izdato knjiga: " + b.izdata());
+		
+
+	}
+}
+

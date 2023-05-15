@@ -1,0 +1,12 @@
+package objekatStudent;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		
+		Student student = new Student(34215, "Maja", "Golic");
+
+		System.out.println(student.getProsek());
+	}
+
+}

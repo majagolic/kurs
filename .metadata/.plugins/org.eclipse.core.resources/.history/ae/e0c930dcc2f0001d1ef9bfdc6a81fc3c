@@ -1,0 +1,16 @@
+package sud;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Evidencija evidencija = new Evidencija("Osnovni sud u Novom Sadu", "Sutjeska 3");
+		
+		
+	}
+
+}

@@ -1,0 +1,179 @@
+package sud;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
+public class Test {
+	
+	public static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		
+		Evidencija evidencija = new Evidencija();
+		
+		evidencija.load("predmeti.txt");
+		
+		String izbor;
+		do {
+			System.out.println("1. Dodaj predmet");
+			System.out.println("2. Ispisi predmete");
+			System.out.println("3. Obrisi predmet");
+			System.out.println("4. Izmeni predmet");
+			System.out.println("5. Ispis predmeta na osnovu broja");
+			System.out.println("6. Ispis predmeta na osnvu imena");
+			System.out.println("7. Dodaj tekst");
+			System.out.println("8. Ispis predmeta u opsegu datuma");
+			System.out.println("x. Izlaz");
+			System.out.print("Odabir opcije: ");
+			izbor = scanner.nextLine();
+			
+			switch (izbor) {
+			case "1":
+				dodajPredmet(evidencija);
+				break;
+			case "2":
+				evidencija.ispisPredmeta();
+				break;
+			case "3":
+				obrisiPredmet(evidencija);
+				break;
+			case "4":
+				izmeniPredmet(evidencija);
+				break;
+			case "5":
+				ispisPredmetaNaOsnovuBroja(evidencija);
+				break;
+			case "6":
+				ispisPredmetaNaOsnovuImena(evidencija);
+				break;
+			case "7":
+				dodajTekst(evidencija);
+				break;
+			case "8":
+				ispisPredmetaUOpseguDatuma(evidencija);
+				break;
+			case "x":
+				break;
+			default:
+				System.out.println("Opcija ne postoji.");
+				break;
+			}
+			evidencija.save("predmeti.txt");
+		} while (!izbor.equals("x"));
+		
+		scanner.close();
+		
+		private static void dodajPredmet(Evidencija evidencija) {
+			String brojStr;
+			do {
+				System.out.println("Predmet: ");
+				brojStr = scanner.nextLine();
+			} while (!proveriBroj(brojStr));
+			int broj = Integer.parseInt(brojStr);
+		}
+		
+			System.out.println("Naziv: ");
+			String naziv =  scanner.nextLine();
+			
+			System.out.println("Tekst: ");
+			String tekst =  scanner.nextLine();
+			
+			String datumStr;
+			do {
+				System.out.println("Datum: ");
+				datumStr = scanner.nextLine();
+			} while (!proveriDatum(datumStr));
+			LocalDate datum = LocalDate.parse(datumStr);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		private boolean proveriBroj(String brojStr) {
+			try {
+				Integer.parseInt(brojStr);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		
+		private boolean proveriDatum(String datumStr) {
+			try {
+				Integer.parseInt(datumStr);
+				return true;
+			} catch (Exception e) {
+				return false;
+				}
+		}
+		
+	}	
+
+		
+		
+		
+		/*String d1 = "25.01.2017.";
+		String d2 = "01.01.2017.";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		LocalDate d1ZaDodavanje = null;
+		
+		try {
+			d1ZaDodavanje = LocalDate.parse(d1, dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Predmet p1 = new Predmet(1, "Prvi predmet", "Tekst prvog predmeta", d1ZaDodavanje);
+
+		try {
+			d1ZaDodavanje = LocalDate.parse(d2, dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Predmet p2 = new Predmet(2, "Drugi predmet", "Tekst drugog predmeta", d1ZaDodavanje);
+		
+		evidencija.dodajPredmet(p1);
+		evidencija.dodajPredmet(p2);
+		
+		evidencija.dodajTekst("Neki Novi Tekst", 2);
+		
+		evidencija.ispisNaOsnovuBroja(2);
+		
+evidencija.ispisNaOsnovuImena("Prvi predmet");
+		
+		System.out.println(evidencija);
+		evidencija.save("predmeti.txt");
+		evidencija.getSpisakPredmeta().clear();
+		evidencija.load("predmeti.txt");
+		System.out.println();
+		System.out.println(evidencija);
+		
+		LocalDate min = null;
+		try {
+			min = LocalDate.parse("15.01.2017.", dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		LocalDate max = null;
+		try {
+			max = LocalDate.parse("25.01.2017.", dtf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Pretraga po datumima:");
+		evidencija.ispisPredmetaUOpseguDatuma(min, max);
+*/
+	
+
+
+	
+
+

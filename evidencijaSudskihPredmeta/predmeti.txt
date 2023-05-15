@@ -1,0 +1,4 @@
+Osnovni sud u Novom Sadu
+Sutjeska 3
+1;Prvi predmet;Tekst prvog predmeta;25.01.2017.
+2;Podela;kuca;21.02.2020.

@@ -1,0 +1,19 @@
+package objekatPas;
+
+import java.util.ArrayList;
+
+public class TestPas {
+
+	public static void main(String[] args) {
+		
+		Pas Dzesi = new Pas("Dzesi", 4, true, "avlijaner");
+		Pas Sima = new Pas("Sima", 6, false, "jazavicar");
+		Pas Mira = new Pas("Mira", 2, true, "zlatni retriver");
+		Pas Sone = new Pas("Sone", 3, true, "terijer");
+		Pas Lesi = new Pas("Lesi", 4, false, "pudla");
+		Pas Lara = new Pas("Lara", 1, true, "doga");
+		Pas Olja = new Pas("Olja", 4, true, "dalmatinac");
+		
+	}
+
+}

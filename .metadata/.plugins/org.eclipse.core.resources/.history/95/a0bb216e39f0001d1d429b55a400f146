@@ -1,0 +1,14 @@
+package sud;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Predmet {
+	
+	private int broj;
+	private String naziv = "";
+	private String tekst = "";
+	private LocalDate datum = LocalDate.now();
+	
+
+}

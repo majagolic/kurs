@@ -1,0 +1,152 @@
+package sud;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+public class Evidencija {
+	
+	private String nazivSuda = "";
+	private String adresaSuda = "";
+	private ArrayList<Predmet> spisakPredmeta = new ArrayList<Predmet>();
+	
+	
+	
+	public Evidencija() {
+		
+	}
+
+
+
+	public Evidencija(String nazivSuda, String adresaSuda, ArrayList<Predmet> spisakPredmeta) {
+	
+		this.nazivSuda = nazivSuda;
+		this.adresaSuda = adresaSuda;
+		this.spisakPredmeta = spisakPredmeta;
+	}
+
+
+
+	public String getNazivSuda() {
+		return nazivSuda;
+	}
+
+
+
+	public void setNazivSuda(String nazivSuda) {
+		this.nazivSuda = nazivSuda;
+	}
+
+
+
+	public String getAdresaSuda() {
+		return adresaSuda;
+	}
+
+
+
+	public void setAdresaSuda(String adresaSuda) {
+		this.adresaSuda = adresaSuda;
+	}
+
+
+
+	public ArrayList<Predmet> getSpisakPredmeta() {
+		return spisakPredmeta;
+	}
+
+
+
+	public void setSpisakPredmeta(ArrayList<Predmet> spisakPredmeta) {
+		this.spisakPredmeta = spisakPredmeta;
+	}
+	
+	
+	public boolean dadajPredmet(Predmet noviPredmet) {
+		
+		for (int i = 0; i < spisakPredmeta.size(); i++) {
+			if(noviPredmet.getBroj() == spisakPredmeta.get(i).getBroj()) {
+				System.out.println("Predmet vec postoji.");
+					return false;
+				}
+		}
+			spisakPredmeta.add(noviPredmet);
+			System.out.println("Predmet uspesno dodat.");
+			return true;
+			
+		}
+	
+	public void ispisNaOsnovuBroja(int brojPredmeta ) {
+		
+		for (int i = 0; i < spisakPredmeta.size();  i++) {
+			if(spisakPredmeta.get(i).getBroj() == brojPredmeta){
+				System.out.println(spisakPredmeta.get(i));
+			}
+			
+		}
+	}
+	
+	public void ispisNaOsnovuImena(String imePredmeta) {
+		
+		for (int i = 0; i < spisakPredmeta.size(); i++) {
+			if(spisakPredmeta.get(i).getNaziv() == imePredmeta) {
+				System.out.println(spisakPredmeta.get(i));
+			}
+			
+		}
+	}
+	
+	public String dodajTekst(String noviTekst, int brojPredmeta) {
+		
+		for (int i = 0; i < spisakPredmeta.size();  i++) {
+			if(spisakPredmeta.get(i).getBroj() == brojPredmeta){
+				String tekstZaDodavanje = spisakPredmeta.get(i).getTekst() + " " + noviTekst;
+				spisakPredmeta.get(i).setTekst(tekstZaDodavanje);
+				return tekstZaDodavanje;
+				}
+			}
+			return null;
+		}
+	
+	public void ispisPredmetaUOpseguDatuma(LocalDate min, LocalDate max) {
+		
+		for (int i = 0; i < spisakPredmeta.size(); i++) {
+			
+			if(spisakPredmeta.get(i).getDatum().compareTo(min) >= 0 && spisakPredmeta.get(i).getDatum().compareTo(max) <= 0){
+				System.out.println(spisakPredmeta.get(i));
+			}
+			
+		}
+	}
+	
+	public void save(String path) {
+		
+		ArrayList<String> lines = new ArrayList<String>();
+	
+		
+		String line1 = this.nazivSuda;
+		String line2 = this.adresaSuda;
+		
+		lines.add(line1);
+		lines.add(line2);
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}
+
+

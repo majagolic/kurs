@@ -1,0 +1,46 @@
+package sud;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+
+public class Evidencija {
+	
+	private String nazivSuda = "";
+	private String adresaSuda = "";
+	private ArrayList<Predmet> spisakPredmeta = new ArrayList<Predmet>();
+	
+	
+	
+	public Evidencija() {
+		
+	}
+
+
+
+	public Evidencija(String nazivSuda, String adresaSuda, ArrayList<Predmet> spisakPredmeta) {
+	
+		this.nazivSuda = nazivSuda;
+		this.adresaSuda = adresaSuda;
+		this.spisakPredmeta = spisakPredmeta;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}
+
+

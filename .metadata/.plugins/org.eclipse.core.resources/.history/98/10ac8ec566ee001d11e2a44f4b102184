@@ -1,0 +1,181 @@
+package objektiKurs;
+
+import java.util.Scanner;
+
+public class TestMeni {
+	
+	public static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		
+		Kurs kurs = new Kurs(); //konstruktor Kurs napravi objekat kurs
+		
+		String izbor = "";
+		
+		do {
+			System.out.println("Meni:");
+			System.out.println("1. Kreiraj kurs");
+			System.out.println("2. Dodaj polaznika");
+			System.out.println("3. Ispisi polaznike");
+			System.out.println("4. Izmeni polaznika");
+			System.out.println("5. Obrisi polaznika");
+			System.out.println("6. Pretraga polaznika po imenu i prezimenu");
+			System.out.println("7. Pretraga polaznika po imenu");
+			System.out.println("8. Ispis ukupnog broja polaznika");
+			System.out.println("9. Ispis podataka o kursu");
+			System.out.println("x. Izlaz");
+			
+			izbor = scanner.nextLine();
+			
+			switch (izbor) {
+			case "1":
+				kreirajKurs(kurs);
+				break;
+			case "2":
+				dodajPolaznika(kurs);
+				break;
+			case "3":
+				kurs.ispisiPolaznike();
+				break;
+			case "4":
+				izmeniPolaznika(kurs);
+				break;
+			case "5":
+				obrisiPolaznika(kurs);
+				break;
+			case "6":
+				pretragaPolaznikaPoImenuIPrezimenu(kurs);
+				break;
+			case "7":
+				pretragaPolaznikaPoImenu(kurs);
+				break;
+			case "8":
+				kurs.ispisiUkupanBrojPolaznika();
+				break;
+			case "9":
+				System.out.println(kurs);
+				break;
+			case "x":
+				break;
+			default:
+				System.out.println("Opcija ne postoji.");
+				break;
+			}
+			
+		} while (!izbor.equals("x"));
+		
+		scanner.close();
+		kurs.sacuvajUFajl("kurs");
+	}
+
+	private static void pretragaPolaznikaPoImenu(Kurs kurs) {
+		System.out.println("Ime:");
+		String ime = scanner.nextLine();
+		kurs.pretragaPolaznikaPoImenu(ime);
+	}
+	
+	private static void pretragaPolaznikaPoImenuIPrezimenu(Kurs kurs) {
+		
+		System.out.println("Polaznik: ");
+		String polaznik = scanner.nextLine();
+		kurs.pretragaPolaznikaPoImenuIPrezimenu(polaznik);
+	}
+	
+	private static void obrisiPolaznika(Kurs kurs) {
+		
+		System.out.println("Polaznik: ");
+		String polaznik = scanner.nextLine();
+		boolean rezultat = kurs.obrisiPolaznika(polaznik);
+		
+		if(rezultat) {
+			System.out.println("Polaznik je uspesno obrisan.");
+		}
+		else {
+			System.out.println("Neuspesno brisanje polaznika.");
+		}
+	}
+	
+	private static void izmeniPolaznika(Kurs kurs) {
+		
+		System.out.println("Stari polaznik: ");
+		String stariPolaznik = scanner.nextLine();
+		
+		System.out.println("Novi polaznik:");
+		String noviPolaznik = scanner.nextLine();
+		
+		kurs.izmeniPolaznika(stariPolaznik, noviPolaznik);
+		
+		/*if(rezultat) {
+			System.out.println("Uspesno izmenjen polaznik.");
+		}
+		else {
+			System.out.println("Neuspesna izmena polaznika.");
+		}*/
+	}
+	
+	private static void dodajPolaznika(Kurs kurs) {
+		
+		System.out.println("Polaznik: ");
+		String polaznik = scanner.nextLine();
+		kurs.dodajPolaznika(polaznik);
+		//if(rezultat) {
+		//	System.out.println("Uspesno dodat polaznik.");
+	//	}
+	//	else {
+		//	System.out.println("Neuspesno dodavanje polaznika.");
+	//	}
+	}
+	
+	private static boolean proveriSifru(String sifra) {
+		try {
+			Integer.parseInt(sifra);
+			if (sifra.length() == 5) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	private static boolean proveriCenu(String cenaPoPolaznikuS) {
+		try {
+			double cena = Double.parseDouble(cenaPoPolaznikuS);
+			if (cena >= 0) {
+				return true;	
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	private static void kreirajKurs(Kurs kurs) {
+		
+		String sifraS;
+		do {
+			System.out.println("Sifra:");
+			sifraS = scanner.nextLine();
+		} while (!proveriSifru(sifraS));
+		int sifra = Integer.parseInt(sifraS);
+		
+		System.out.println("Naziv:");
+		String naziv = scanner.nextLine();
+		
+		String cenaPoPolaznikuS;
+		do {
+			System.out.println("Cena po polazniku:");
+			cenaPoPolaznikuS = scanner.nextLine();
+		} while (!proveriCenu(cenaPoPolaznikuS));
+		double cenaPoPolazniku = Double.parseDouble(cenaPoPolaznikuS);
+		
+		kurs.setSifra(sifra);
+		kurs.setNaziv(naziv);
+		kurs.setCenaPoPolazniku(cenaPoPolazniku);
+		System.out.println(kurs);
+		
+	}
+	
+}
+
+

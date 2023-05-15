@@ -1,0 +1,282 @@
+package objekatStudent;
+
+
+import java.util.ArrayList;
+
+
+public class Student {
+	
+	private int indeks;
+	private String ime;
+	private String prezime;
+	private ArrayList<String> predmeti = new ArrayList<>();
+	private ArrayList<Integer> ocene = new ArrayList<>();
+	private double prosek;
+	
+	public Student() {
+		
+	}
+	
+	public Student(int indeks, String ime, String prezime ) {
+		
+		this.indeks = indeks;
+		this.ime = ime;
+		this.prezime = prezime;
+		
+	}
+	
+	public Student (int indeks, String ime, String prezime,  ArrayList<String> predmeti, ArrayList<Integer> ocene) {
+		
+		this.indeks = indeks;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.predmeti = predmeti;
+		this.ocene = ocene;
+	}
+
+	public int getIndeks() {
+		return indeks;
+	}
+
+	public void setIndeks(int indeks) {
+			if ( indeks >= 0 ) {
+				this.indeks = indeks;
+			} else {
+				System.out.println("Broj indeksa mora biti veci od 0.");
+			}
+		}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		if (ime == null || ime.equals("")) {
+			System.out.println("Uneto pogresno ime.");
+			return;
+		}
+		
+		for (int i = 0; i < ime.length(); i++) {
+			if (!Character.isLetter(ime.charAt(i))) {
+				System.out.println("Ime ne sme sadrzati broj.");
+				return;
+			}
+		}
+		if(!Character.isUpperCase(ime.charAt(0))) {
+			System.out.println("Pocetno slovo mora biti veliko.");
+			return;
+		}
+		this.ime = ime;
+		System.out.println("Uspesno ste uneli ime.");
+	}
+	
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		if (prezime == null || prezime.equals("")) {
+			System.out.println("Uneto pogresno prezime.");
+			return;
+		}
+		
+		for (int i = 0; i < prezime.length(); i++) {
+			if (!Character.isLetter(prezime.charAt(i))) {
+				System.out.println("Prezime ne sme sadrzati broj.");
+				return;
+			}
+		}
+		if(!Character.isUpperCase(prezime.charAt(0))) {
+			System.out.println("Pocetno slovo mora biti veliko.");
+			return;
+		}
+		this.prezime = prezime;
+		System.out.println("Uspesno ste uneli prezime.");
+	}
+	
+
+	public ArrayList<String> getPredmeti() {
+		return predmeti;
+	}
+
+	public void setPredmeti(ArrayList<String> predmeti) {
+		this.predmeti = predmeti;
+	}
+
+	public ArrayList<Integer> getOcene() {
+		return ocene;
+	}
+
+	public void setOcene(ArrayList<Integer> ocene) {
+		for(int i = 0; i < ocene.size(); i++) {
+			int ocena = ocene.get(i);
+			
+			if(!proveriOcenu(ocena)) {
+				System.out.println("Greska!");
+				return;
+			}
+		}
+		this.ocene = ocene;
+	}
+			
+	
+
+	public double izracunajProsek() {
+		if(this.predmeti.size() > 0) {
+			int sumaOcena = 0;
+			for(int i = 0; i < this.ocene.size(); i++) {
+				sumaOcena += this.ocene.get(i);
+				}
+			this.prosek = sumaOcena / this.ocene.size();
+		}
+		else {
+			this.prosek = 0;
+			System.out.println("Nije moguce izracunati prosek.");
+		}
+		return this.prosek;
+	}
+
+	public double getProsek() {
+		 izracunajProsek();
+		return this.prosek;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [indeks=" + indeks + ", ime=" + ime + ", prezime=" + prezime + "]";
+	}
+
+	public boolean ponistiOcenu(String predmet) {
+		
+		int indeksPredmeta = -1;
+		for(int i = 0; i < this.predmeti.size(); i++) {
+			if(this.predmeti.get(i).equals(predmet)) {
+				indeksPredmeta = i;
+				break;
+			}
+		}
+		if (indeksPredmeta != -1) {
+			this.predmeti.remove(indeksPredmeta);
+			this.ocene.remove(indeksPredmeta);
+			return true;
+		} else {
+			System.out.println("Ne postoji predmet sa zadatim imenom.");
+			return false;
+		}
+	}
+	
+	public boolean upisiOcenu(String predmet, int ocena) {
+		if(proveriOcenu(ocena)) {
+			int indeksPredmeta = -1;
+			for(int i = 0; i < this.predmeti.size(); i++) {
+				if(this.predmeti.get(i).equals(predmet)) {
+					indeksPredmeta = i;
+					break;
+				}
+			}
+			if (indeksPredmeta == -1) {
+				this.predmeti.add(predmet);
+				this.ocene.add(ocena);
+				return true;
+			} else {
+				System.out.println("Vec postoji predmet sa zadatim imenom.");
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	/*
+	 * Na osnovu unetog naziva predmeta ispisuje se ocena kojom je taj predmet poloï¿½en
+	 */
+	public Integer citajOcenu(String predmet) {
+		int indeksPredmeta = -1;
+		for(int i = 0; i < this.predmeti.size(); i++) {
+			if(this.predmeti.get(i).equals(predmet)) {
+				indeksPredmeta = i;
+				break;
+			}
+		}
+		if (indeksPredmeta != -1) {
+			return this.ocene.get(indeksPredmeta);
+		} else {
+			System.out.println("Ne postoji predmet sa zadatim imenom.");
+			return null;
+		}
+	}
+	
+	public boolean izmeniOcenu(String predmet, int novaOcena) {
+
+		if(proveriOcenu(novaOcena)) {
+			int indeksPredmeta = -1;
+			for(int i = 0; i < this.predmeti.size(); i++) {
+				if(this.predmeti.get(i).equals(predmet)) {
+					indeksPredmeta = i;
+					break;
+				}
+			}
+			if (indeksPredmeta != -1) {
+				this.ocene.set(indeksPredmeta, novaOcena);
+				return true;
+			} else {
+				System.out.println("Ne postoji predmet sa zadatim imenom.");
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public void ispisiOcene(){
+		System.out.println(">>>>>>>>>>Ocene<<<<<<<<<<");
+		for(int i = 0; i < this.predmeti.size(); i++) {
+			System.out.println("Predmet: " + this.predmeti.get(i) + ", ocena: " + this.ocene.get(i));
+		}
+	
+	}
+	
+	public void ispisPodatakaOStudentu() {
+		System.out.println(toString());
+		ispisiOcene();
+		System.out.println("----------------------------------");
+		System.out.println("Prosek: " + izracunajProsek());
+		
+	}
+	
+	public void ispisiPredmeteSaOCenomVecomOd(int ocena) {
+			if(proveriOcenu(ocena)) {
+				for(int i = 0; i < this.ocene.size(); i++) {
+					if(this.ocene.get(i) > ocena) {
+						System.out.println(this.predmeti.get(i));
+					}
+				}
+			}
+		}
+	
+	/*
+	 * Iz liste predmeta ispisuju se oni koji pocinju zadatim stringom naziv
+	 */
+	public void pretragaPoNazivuPredmeta(String naziv) {
+		
+		for(int i = 0; i < this.predmeti.size(); i++) {
+			if(this.predmeti.get(i).toLowerCase().startsWith(naziv.toLowerCase())) {
+				System.out.println(this.predmeti.get(i));
+			}
+		}
+	}
+	
+
+	
+	public boolean proveriOcenu(int ocena) {
+			if (ocena >= 6 && ocena<=10 ) {
+				return true;
+			}
+			return false;
+		}
+	
+	
+	
+
+}

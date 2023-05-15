@@ -1,0 +1,40 @@
+package objekatStudent;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student {
+	
+	private int indeks;
+	private String ime;
+	private String prezime;
+	private ArrayList<String> predmeti = new ArrayList<>();
+	private ArrayList<Integer> ocene = new ArrayList<>();
+	private double prosek;
+	
+	public Student() {
+		
+	}
+	
+	public Student(int indeks, String ime, String prezime ) {
+		
+		this.indeks = indeks;
+		this.ime = ime;
+		this.prezime = prezime;
+		
+	}
+	
+	public Student (int indeks, String ime, String prezime,  ArrayList<String> predmeti, ArrayList<Integer> ocene) {
+		
+		
+	}
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,56 @@
+package objektiKurs;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Kurs kursOP = new Kurs();
+		kursOP.setSifra(23232);
+		kursOP.setCenaPoPolazniku(30);
+		
+		System.out.println(kursOP);
+		
+		
+		
+		//kursOP.ispisPolaznika();
+		
+		//kursOP.ispisUkupnogBrojaPolaznika();
+		
+		//boolean rez = kursOP.dodajPolaznika("Pera Peric");
+//		if (rez) {
+//			System.out.println("Uspesno!");
+//		} else {
+//			System.out.println("Neuspesno");
+//		}
+		
+		kursOP.dodajPolaznika("Steva Mikic");
+		kursOP.dodajPolaznika("Steva Stevic");
+		
+		kursOP.setNaziv("Osnove programiranja");
+		kursOP.setCenaPoPolazniku(100);
+		
+		System.out.println(kursOP);
+		
+		kursOP.sacuvajUFajl("kursOP.txt");
+		
+		
+		
+		Kurs noviKurs = new Kurs();
+		noviKurs.ucitajIzFajla("kursOP.txt");
+		System.out.println(noviKurs);
+		
+		//kursOP.ispisUkupnogBrojaPolaznika();
+		
+		//kursOP.pretragaPoImenu("pera");
+		//kursOP.pretragaPoImenuIPrezimenu("Mika Mikic");
+		
+		//kursOP.ispisPolaznika();
+		
+		//kursOP.obrisiPolaznika("Stea Stevic");
+		
+		//kursOP.izmeniPolaznika("P Peric", "Mika Mikic");
+		
+		//kursOP.ispisPolaznika();
+		
+	}
+}

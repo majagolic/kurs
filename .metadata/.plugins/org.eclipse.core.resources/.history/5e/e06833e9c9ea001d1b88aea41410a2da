@@ -1,0 +1,57 @@
+package objekatPas;
+
+import java.util.ArrayList;
+
+public class TestPas {
+
+	public static void main(String[] args) {
+		
+		Pas dzesi = new Pas("Dzesi", 4, true, "avlijaner");
+		Pas sima = new Pas("Sima", 6, false, "jazavicar");
+		Pas mira = new Pas("Mira", 2, true, "zlatni retriver");
+		Pas sone = new Pas("Sone", 3, true, "terijer");
+		Pas lesi = new Pas("Lesi", 4, false, "pudla");
+		Pas lara = new Pas("Lara", 1, true, "doga");
+		Pas olja = new Pas("Olja", 4, true, "dalmatinac");
+		
+		ArrayList<Pas> psi = new ArrayList<>();
+		
+		psi.add(dzesi);
+		psi.add(sima);
+		psi.add(mira);
+		psi.add(sone);
+		psi.add(lesi);
+		psi.add(lara);
+		psi.add(olja);
+		
+		Pas najstarijiPas = psi.get(0);
+		
+		for (int i = 1; i < psi.size(); i++) {
+			
+			if(psi.get(i).getStarost() > najstarijiPas.getStarost()) {
+				najstarijiPas = psi.get(i);
+			}
+		}
+		
+		for(int i = 0; i < psi.size(); i++) {
+			if(psi.get(i).getStarost() == najstarijiPas.getStarost()) {
+				System.out.println(psi.get(i));
+			}
+		}
+		
+		System.out.println("-------Najstariji pas-------");
+		System.out.println(najstarijiPas);
+		System.out.print("Ljudske godine najstarijeg psa: ");
+		najstarijiPas.ispisiStarostULjudskimGodinama();
+	
+		System.out.println("-------Ispis imena vakcinisanih pasa-------");
+		for (int i = 0; i < psi.size(); i++) {
+			Pas temp = psi.get(i);
+			if (temp.isVakcinisan()) {
+				System.out.println(temp.getIme());
+			}
+		}
+		
+	}
+
+}
